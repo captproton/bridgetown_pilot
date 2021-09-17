@@ -13,6 +13,7 @@ authenticate :user, lambda { |u| u.admin? } do
 end
 
   resources :notifications, only: [:index]
+  resources :backstage, only: [:index]
   resources :announcements, only: [:index]
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   root to: 'home#index'
