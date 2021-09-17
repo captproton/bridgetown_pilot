@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :projects
   resources :pages
   resources :posts
   get '/privacy', to: 'home#privacy'
