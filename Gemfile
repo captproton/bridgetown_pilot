@@ -72,3 +72,8 @@ gem 'sidekiq', '~> 6.2'
 gem 'sitemap_generator', '~> 6.1'
 gem 'whenever', require: false
 gem 'responders', github: 'heartcombo/responders'
+
+# app-specific
+gem 'octokit', '~> 4.21'
+gem 'pry', '~> 0.14.1'
+gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'

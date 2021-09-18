@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to git_repos_path, class: 'btn btn-default' do %>
+    All Git_repos
+  <% end %>
+  <%= link_to edit_git_repo_path(@git_repo), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show git_repo</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Email:</dt>
+  <dd><%= @git_repo.email %></dd>
+  <dt>Provider:</dt>
+  <dd><%= @git_repo.provider %></dd>
+  <dt>Uid:</dt>
+  <dd><%= @git_repo.uid %></dd>
+</dl>
