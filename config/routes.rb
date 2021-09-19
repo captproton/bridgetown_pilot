@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :git_repos
+  resources :git_repo_files
   resources :projects
   resources :pages
   resources :posts

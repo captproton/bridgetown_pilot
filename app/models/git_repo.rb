@@ -23,12 +23,29 @@ class GitRepo
 
 
   # GET /git_repos or /git_repos.json
-  def list_files
+  def list_files(file_path='')
     # @git_repos = GitRepo.all
+    key_list = [:name, :path, :sha, :type]
+    selected_files = []
+
+    files_and_folders_in_dir = client.contents(repo_path, :path => file_path)
+    content_files = files_and_folders_in_dir.select{|file| file[:path].downcase.include?(".md")}
+    content_files.each do |file|
+      slimmer_content_file = file.select do |key, value|
+        key_list.include?(key)
+      end
+      selected_files << slimmer_content_file.to_h
+    end
+
+    selected_files
+    
   end
 
+
   # GET /git_repos/1 or /git_repos/1.json
-  def show_file
+  def get_file_content(file_path)
+    page          = _get_repo_file_metadata(file_path)
+    content       = Base64.decode64(page[:content])
 
   end
 
@@ -105,6 +122,7 @@ class GitRepo
       @git_repo = GitRepo.find(params[:id])
     end
 
+
     # Only allow a list of trusted parameters through.
     def git_repo_file_params
     #   params.require(:git_repo).permit(:email, :provider, :uid)
@@ -113,12 +131,13 @@ class GitRepo
 # 
 
 
-    def get_repo_file_metadata(file_path)
+    def _get_repo_file_metadata(file_path)
         # src_files = client.contents("captproton/bridgetown_experiment", :path => 'src')
         files           = client.contents(repo_path, :path => file_path)
-        file_metadata   = client.contents(repo_path, path: file_path, query: {ref: branch
-})
+        file_metadata   = client.contents(repo_path, 
+                                          path: file_path, 
+                                          query: {ref: branch}
+                                        )
     end
-
     
 end

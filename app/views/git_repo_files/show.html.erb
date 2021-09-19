@@ -1,0 +1,19 @@
+<div class="page-header">
+  <%= link_to git_repo_files_path, class: 'btn btn-default' do %>
+    All files for <%= params[:git_repo] %>
+  <% end %>
+  <%= link_to edit_git_repo_path(@git_repo), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show git_repo</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>git repo</dt>
+  <dd><%= @repo_path %> </dd>
+  <dt>@file_path</dt>
+  <dd><%= @file_path %></dd>
+  <dt>@git_repo_file</dt>
+  <dd><%= @git_repo_file_contents %></dd>
+  <dt>Uid:</dt>
+</dl>

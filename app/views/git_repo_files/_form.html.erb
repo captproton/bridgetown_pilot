@@ -1,0 +1,44 @@
+<%= form_with(model: git_repo_file, local: true) do |form| %>
+  <% if git_repo_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(git_repo_file.errors.count, "error") %> prohibited this git_repo from being saved:</h2>
+
+      <ul>
+      <% git_repo_file.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :email, class: 'form-label' %>
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :provider, class: 'form-label' %>
+      <%= form.text_field :provider, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :uid, class: 'form-label' %>
+      <%= form.text_field :uid, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if git_repo_file.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', git_repo, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if git_repo_file.persisted? %>
+      <%= link_to "Cancel", git_repo_file, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", git_repo_files_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
